@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+      <link rel="icon" type="image/png" href="img/logo.jpeg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Servicios - Biblioteca Aurora</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --morado:#5B3E75;
+  --morado-suave:#7A5A97;
+  --verde:#3E6337;
+  --verde-suave:#5C8552;
+  --lavanda:#EFE9F3;
+  --crema:#FAF6F0;
+  --gris:#2B2530;
+  --dorado:#9C6B3E;
+  --blanco:#FFFDFB;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:var(--crema);
+  color:var(--gris);
+  line-height:1.6;
+}
+
+header{
+  background:rgba(255,253,251,.97);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid #e9e0ec;
+  backdrop-filter:blur(10px);
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:var(--morado);
+  font-family:'Fraunces',serif;
+  font-size:23px;
+  font-weight:600;
+  margin-right:auto;
+}
+
+.brand img{
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+
+.nav-links a{
+  color:var(--gris);
+  text-decoration:none;
+  font-weight:600;
+}
+
+.nav-links a:hover{
+  color:var(--morado);
+}
+
+.nav-cta{
+  background:var(--morado);
+  color:white;
+  text-decoration:none;
+  padding:11px 18px;
+  border-radius:25px;
+  font-weight:700;
+}
+
+.menu-toggle{
+  display:none;
+  border:none;
+  background:var(--lavanda);
+  color:var(--morado);
+  font-size:27px;
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.mobile-menu{
+  display:none;
+  max-width:1200px;
+  margin:auto;
+  padding:0 24px 18px;
+}
+
+.mobile-menu a{
+  text-decoration:none;
+  color:var(--gris);
+  padding:12px 5px;
+  border-bottom:1px solid #eee7f0;
+  font-weight:600;
+}
+
+.mobile-menu .mobile-cta{
+  margin-top:10px;
+  text-align:center;
+  color:white;
+  background:var(--morado);
+  border-radius:12px;
+  border:none;
+}
+
+/* HERO */
+
+.hero{
+  background:
+    radial-gradient(circle at 10% 30%,rgba(92,133,82,.15),transparent 25%),
+    radial-gradient(circle at 90% 10%,rgba(122,90,151,.18),transparent 28%),
+    #f8f3ed;
+  padding:80px 24px;
+}
+
+.hero-inner{
+  max-width:1150px;
+  margin:auto;
+  text-align:center;
+}
+
+.hero span{
+  color:var(--verde);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+.hero h1{
+  font-family:'Fraunces',serif;
+  color:var(--morado);
+  font-size:clamp(42px,6vw,62px);
+  margin:8px 0 14px;
+}
+
+.hero p{
+  max-width:720px;
+  margin:auto;
+  color:#625b65;
+  font-size:18px;
+}
+
+/* SERVICIOS */
+
+.services{
+  max-width:1200px;
+  margin:auto;
+  padding:75px 24px;
+}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:25px;
+}
+
+.service-card{
+  background:white;
+  border-radius:23px;
+  padding:32px;
+  border:1px solid #e7ded1;
+  display:grid;
+  grid-template-columns:75px 1fr;
+  gap:22px;
+  box-shadow:0 9px 25px rgba(65,45,75,.06);
+  transition:.25s;
+}
+
+.service-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 32px rgba(65,45,75,.10);
+}
+
+.icon{
+  width:68px;
+  height:68px;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+}
+
+.icon-purple{
+  background:#eee5f2;
+}
+
+.icon-green{
+  background:#e6eee3;
+}
+
+.icon-gold{
+  background:#f3e9df;
+}
+
+.icon-blue{
+  background:#e5edf0;
+}
+
+.service-card h2{
+  font-family:'Fraunces',serif;
+  color:var(--morado);
+  font-size:27px;
+  margin-bottom:7px;
+}
+
+.service-card p{
+  color:#625b65;
+  margin-bottom:13px;
+}
+
+.service-list{
+  list-style:none;
+  color:#5f5862;
+}
+
+.service-list li{
+  margin:5px 0;
+}
+
+.service-list li::before{
+  content:"✓";
+  color:var(--verde);
+  font-weight:700;
+  margin-right:8px;
+}
+
+/* INFORMACION */
+
+.info-section{
+  background:white;
+  padding:75px 24px;
+}
+
+.info-inner{
+  max-width:1150px;
+  margin:auto;
+}
+
+.info-title{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.info-title h2{
+  font-family:'Fraunces',serif;
+  color:var(--morado);
+  font-size:40px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.info-card{
+  background:var(--crema);
+  padding:28px;
+  border-radius:20px;
+  border:1px solid #e7ded1;
+}
+
+.info-card h3{
+  color:var(--verde);
+  font-family:'Fraunces',serif;
+  font-size:23px;
+  margin-bottom:8px;
+}
+
+.info-card p{
+  color:#625b65;
+}
+
+/* CTA */
+
+.cta{
+  max-width:1150px;
+  margin:65px auto;
+  padding:50px;
+  border-radius:25px;
+  background:linear-gradient(135deg,var(--morado),#80609a);
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+}
+
+.cta h2{
+  font-family:'Fraunces',serif;
+  font-size:35px;
+}
+
+.cta p{
+  color:#eee8f1;
+}
+
+.cta a{
+  background:white;
+  color:var(--morado);
+  text-decoration:none;
+  padding:13px 22px;
+  border-radius:25px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+/* FOOTER */
+
+footer{
+  background:#30263a;
+  color:#ddd5e2;
+  padding:40px 24px 22px;
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:35px;
+}
+
+footer h3,
+footer h4{
+  color:white;
+}
+
+footer h3{
+  font-family:'Fraunces',serif;
+  font-size:24px;
+}
+
+footer a{
+  color:#ddd5e2;
+  text-decoration:none;
+  display:block;
+  margin:5px 0;
+}
+
+.copyright{
+  max-width:1200px;
+  margin:25px auto 0;
+  padding-top:18px;
+  border-top:1px solid #50465a;
+  text-align:center;
+  font-size:14px;
+}
+
+@media(max-width:950px){
+
+  .nav-links,
+  .nav-cta{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .mobile-menu.open{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .service-grid{
+    grid-template-columns:1fr;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .cta{
+    margin-left:24px;
+    margin-right:24px;
+  }
+}
+
+@media(max-width:600px){
+
+  .nav{
+    padding:10px 16px;
+  }
+
+  .brand{
+    font-size:19px;
+  }
+
+  .brand img{
+    width:38px;
+    height:38px;
+  }
+
+  .hero{
+    padding:60px 18px;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .services{
+    padding:55px 18px;
+  }
+
+  .service-card{
+    grid-template-columns:1fr;
+    padding:25px;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cta{
+    flex-direction:column;
+    text-align:center;
+    padding:35px 22px;
+    margin:45px 18px;
+  }
+
+  .footer-inner{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<nav class="nav">
+
+<a href="index.html" class="brand">
+<img src="img/logo.jpeg" alt="Logo Biblioteca Aurora">
+Biblioteca Aurora
+</a>
+
+<div class="nav-links">
+  <a href="index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="como-funciona.html">Cómo funciona</a>
+  <a href="horarios.html">Horarios</a>
+</div>
+
+<a href="catalogo.html#busqueda" class="nav-cta">
+Buscar un libro
+</a>
+
+<button class="menu-toggle" id="menuToggle"
+aria-label="Abrir menú"
+aria-expanded="false"
+aria-controls="mobileMenu">☰</button>
+
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html">Inicio</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="servicios.html">Servicios</a>
+<a href="como-funciona.html">Cómo funciona</a>
+<a href="horarios.html">Horarios</a>
+<a href="catalogo.html#busqueda" class="mobile-cta">Buscar un libro</a>
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<span>Disfruta de Biblioteca Aurora</span>
+
+<h1>Servicios pensados para ti</h1>
+
+<p>
+Además de encontrar libros, puedes utilizar diferentes servicios
+para estudiar, leer, investigar y recibir orientación.
+</p>
+
+</div>
+
+</section>
+
+
+<main>
+
+<section class="services">
+
+<div class="service-grid">
+
+
+<article class="service-card">
+
+<div class="icon icon-purple">📚</div>
+
+<div>
+<h2>Consulta de libros</h2>
+
+<p>
+Encuentra diferentes materiales de lectura y consulta
+información según tus necesidades.
+</p>
+
+<ul class="service-list">
+<li>Acceso al catálogo</li>
+<li>Búsqueda por título o autor</li>
+<li>Consulta de diferentes categorías</li>
+</ul>
+
+</div>
+
+</article>
+
+
+<article class="service-card">
+
+<div class="icon icon-green">🔎</div>
+
+<div>
+<h2>Orientación bibliográfica</h2>
+
+<p>
+Si no sabes qué material necesitas, puedes recibir orientación
+para encontrar información relacionada con tu tema.
+</p>
+
+<ul class="service-list">
+<li>Ayuda para localizar libros</li>
+<li>Orientación por temas</li>
+<li>Apoyo durante la búsqueda</li>
+</ul>
+
+</div>
+
+</article>
+
+
+<article class="service-card">
+
+<div class="icon icon-gold">🪑</div>
+
+<div>
+<h2>Sala de lectura</h2>
+
+<p>
+Un espacio tranquilo para leer, estudiar y dedicar tiempo
+a tus actividades académicas.
+</p>
+
+<ul class="service-list">
+<li>Ambiente de lectura</li>
+<li>Espacio para estudiar</li>
+<li>Consulta de materiales</li>
+</ul>
+
+</div>
+
+</article>
+
+
+<article class="service-card">
+
+<div class="icon icon-blue">💡</div>
+
+<div>
+<h2>Apoyo al aprendizaje</h2>
+
+<p>
+Utiliza los recursos disponibles para investigar, aprender
+y complementar tus actividades.
+</p>
+
+<ul class="service-list">
+<li>Material educativo</li>
+<li>Recursos de consulta</li>
+<li>Apoyo para investigaciones</li>
+</ul>
+
+</div>
+
+</article>
+
+
+</div>
+
+</section>
+
+
+<section class="info-section">
+
+<div class="info-inner">
+
+<div class="info-title">
+<h2>¿Cómo aprovechar los servicios?</h2>
+</div>
+
+<div class="info-grid">
+
+<div class="info-card">
+<h3>1. Explora</h3>
+<p>
+Comienza revisando el catálogo para conocer los libros
+y categorías disponibles.
+</p>
+</div>
+
+<div class="info-card">
+<h3>2. Busca</h3>
+<p>
+Utiliza el buscador o pide orientación si necesitas encontrar
+un material específico.
+</p>
+</div>
+
+<div class="info-card">
+<h3>3. Disfruta</h3>
+<p>
+Consulta el material y aprovecha el espacio de lectura
+para estudiar o disfrutar de tu lectura.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="cta">
+
+<div>
+<h2>¿Quieres encontrar un libro?</h2>
+<p>
+Si aún no encuentras el libro que buscas, puedes visitar nuestra biblioteca y comienzar tu búsqueda.
+</p>
+</div>
+
+<a href="index.html#informacion">
+    Ver información de contacto →
+</a>
+
+</div>
+
+</main>
+
+
+<footer>
+
+<div class="footer-inner">
+
+<div>
+<h3>Biblioteca Aurora</h3>
+<p>
+Un espacio para descubrir historias, aprender
+y disfrutar de la lectura.
+</p>
+</div>
+
+<div>
+<h4>Explora</h4>
+
+<a href="index.html">
+Inicio
+</a>
+
+
+<a href="como-funciona.html">
+Cómo funciona
+</a>
+
+
+<a href="catalogo.html">
+Catálogo
+</a>
+
+
+<a href="servicios.html">
+Servicios
+</a>
+
+
+<a href="horarios.html">
+Horarios
+</a>
+
+</div>
+
+<div>
+<h4>Contacto</h4>
+
+<a href="mailto:biblioteca.aurora@correo.com">
+biblioteca.aurora@correo.com
+</a>
+
+
+<a href="tel:60584356">
+6058-4356
+</a>
+
+
+<a href="horarios.html">
+Consultar horarios
+</a>
+
+
+<a href="catalogo.html#busqueda">
+Buscar un libro
+</a>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 Biblioteca Aurora · Todos los derechos reservados.
+</div>
+
+</footer>
+
+
+<script>
+
+const menuToggle=document.getElementById("menuToggle");
+const mobileMenu=document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click",function(){
+
+const abierto=mobileMenu.classList.toggle("open");
+
+menuToggle.setAttribute("aria-expanded",abierto);
+menuToggle.textContent=abierto ? "✕" : "☰";
+
+});
+
+document.querySelectorAll(".mobile-menu a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+mobileMenu.classList.remove("open");
+menuToggle.setAttribute("aria-expanded","false");
+menuToggle.textContent="☰";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
