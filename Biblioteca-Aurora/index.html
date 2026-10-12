@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Aurora</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap');
+
+:root{
+    --morado:#65427F;
+    --morado-oscuro:#302338;
+    --morado-claro:#8B68A2;
+    --lila:#EEE7F2;
+    --lila-fondo:#F2ECF5;
+    --crema:#F8F3EC;
+    --dorado:#B58B54;
+    --verde:#667E62;
+    --texto:#332C36;
+    --blanco:#FFFDFB;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    width:100%;
+    overflow-x:clip;
+}
+
+body{
+    width:100%;
+    max-width:100%;
+    font-family:'DM Sans',sans-serif;
+    background:var(--lila-fondo);
+    color:var(--texto);
+    overflow-x:clip;
+}
+
+img{
+    max-width:100%;
+}
+
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+/* ================= NAVEGACIÓN ================= */
+
+header{
+    min-height:98px;
+    height:auto;
+    background:#F7F2F9;
+    border-bottom:1px solid #e4dce8;
+    display:flex;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    width:100%;
+}
+
+
+.nav{
+    width:100%;
+    max-width:1360px;
+    margin:auto;
+    padding:0 48px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    min-width:0;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Playfair Display',serif;
+    font-size:28px;
+    font-weight:600;
+    color:var(--morado-oscuro);
+    text-decoration:none;
+    white-space:nowrap;
+    flex-shrink:0;
+}
+
+.logo img{
+    width:55px;
+    height:55px;
+    object-fit:cover;
+    border-radius:50%;
+    flex-shrink:0;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:25px;
+    margin-left:auto;
+    margin-right:0;
+}
+
+.nav-links a{
+    color:#332C36;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:500;
+    transition:.2s;
+    white-space:nowrap;
+}
+
+.nav-links a:hover{
+    color:var(--morado);
+}
+
+.nav-button{
+    margin-left:0;
+    background:var(--morado);
+    color:white;
+    text-decoration:none;
+    padding:15px 22px;
+    border-radius:25px;
+    font-size:14px;
+    font-weight:700;
+    white-space:nowrap;
+    box-shadow:0 5px 14px rgba(101,66,127,.20);
+}
+
+.menu-toggle{
+    display:none;
+    width:52px;
+    height:52px;
+    flex-shrink:0;
+    border:none;
+    border-radius:7px;
+    background:var(--morado);
+    color:white;
+    font-size:30px;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+}
+
+.mobile-menu{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    width:100%;
+    background:#F7F2F9;
+    border-bottom:1px solid #ddd2e2;
+    box-shadow:0 8px 20px rgba(48,35,56,.10);
+    padding:15px 22px 20px;
+}
+
+.mobile-menu.open{
+    display:block;
+}
+
+.mobile-menu a{
+    display:block;
+    color:var(--texto);
+    text-decoration:none;
+    padding:14px 5px;
+    border-bottom:1px solid #e7dfe9;
+    font-weight:600;
+}
+
+.mobile-menu a:hover{
+    color:var(--morado);
+}
+
+.mobile-menu .mobile-button{
+    margin-top:12px;
+    background:var(--morado);
+    color:white;
+    text-align:center;
+    border-radius:5px;
+    border:none;
+}
+
+/* ================= PORTADA ================= */
+
+.hero{
+    min-height:600px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 30%,rgba(198,171,216,.60),transparent 30%),
+        linear-gradient(110deg,#F1EAF4 0%,#EEE6F1 55%,#E9DFF0 100%);
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    max-width:100%;
+    border-radius:50%;
+    background:rgba(177,143,198,.12);
+    right:-80px;
+    top:80px;
+    pointer-events:none;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    max-width:100%;
+    border-radius:50%;
+    border:1px solid rgba(139,104,162,.18);
+    right:80px;
+    bottom:-130px;
+    pointer-events:none;
+}
+
+.hero-inner{
+    width:100%;
+    max-width:1360px;
+    min-height:600px;
+    margin:auto;
+    padding:55px 48px 60px;
+    display:grid;
+    grid-template-columns:minmax(0,48%) minmax(0,52%);
+    align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+.hero-text{
+    min-width:0;
+    padding-bottom:25px;
+}
+
+.hero-small{
+    display:block;
+    color:#9A6F45;
+    font-size:15px;
+    font-weight:700;
+    line-height:1.5;
+    margin-bottom:23px;
+    overflow-wrap:anywhere;
+}
+
+.hero-title{
+    font-family:'Playfair Display',serif;
+    color:#302936;
+    font-size:clamp(42px,5.2vw,70px);
+    line-height:1.01;
+    letter-spacing:-2px;
+    max-width:650px;
+    margin-bottom:25px;
+    overflow-wrap:break-word;
+}
+
+.hero-title em{
+    color:var(--morado);
+    font-style:italic;
+    font-weight:500;
+}
+
+.hero-description{
+    max-width:590px;
+    color:#615967;
+    font-size:17px;
+    line-height:1.7;
+    margin-bottom:30px;
+    overflow-wrap:break-word;
+}
+
+.hero-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.explorar-btn,
+.info-btn{
+    display:inline-block;
+    text-decoration:none;
+    padding:15px 26px;
+    border-radius:5px;
+    font-size:15px;
+    font-weight:700;
+    line-height:1.4;
+    text-align:center;
+    transition:.25s;
+}
+
+.explorar-btn{
+    background:var(--morado);
+    color:white;
+    box-shadow:0 6px 15px rgba(101,66,127,.22);
+}
+
+.explorar-btn:hover{
+    background:#523568;
+    transform:translateY(-2px);
+}
+
+.info-btn{
+    border:1px solid var(--morado);
+    color:var(--morado);
+    background:rgba(255,255,255,.45);
+}
+
+.info-btn:hover{
+    background:white;
+    transform:translateY(-2px);
+}
+
+
+/* ================= LIBROS DECORATIVOS ================= */
+
+.hero-books{
+    width:100%;
+    min-width:0;
+    height:500px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.book-stack{
+    width:100%;
+    max-width:550px;
+    height:390px;
+    position:relative;
+}
+
+.sparkle{
+    position:absolute;
+    left:5%;
+    top:20px;
+    color:var(--morado);
+    font-size:32px;
+    z-index:8;
+    transform:rotate(-10deg);
+}
+
+.leaf{
+    position:absolute;
+    width:70px;
+    height:28px;
+    background:#9B79AF;
+    border-radius:100% 0 100% 0;
+    opacity:.8;
+}
+
+.leaf-one{
+    left:0;
+    top:205px;
+    transform:rotate(-25deg);
+}
+
+.leaf-two{
+    left:70px;
+    top:220px;
+    transform:rotate(25deg) scale(.7);
+}
+
+.leaf-three{
+    right:5px;
+    bottom:60px;
+    transform:rotate(35deg) scale(.7);
+}
+
+.category{
+    position:absolute;
+    height:66px;
+    max-width:calc(100% - 20px);
+    border-radius:3px;
+    display:flex;
+    align-items:center;
+    padding:0 15px 0 46px;
+    font-family:'Playfair Display',serif;
+    font-size:16px;
+    font-weight:600;
+    box-shadow:0 6px 12px rgba(58,38,67,.08);
+    overflow:hidden;
+}
+
+.category{
+    text-decoration:none;
+    cursor:pointer;
+    transition:filter .2s, box-shadow .2s;
+}
+
+.category:hover,.category:focus-visible{
+    filter:brightness(1.06);
+    box-shadow:0 9px 18px rgba(58,38,67,.18);
+    outline:2px solid #B58B54;
+    outline-offset:3px;
+}
+
+.category::before{
+    content:"";
+    position:absolute;
+    left:20px;
+    width:4px;
+    height:44px;
+    background:#C8A66C;
+    border-radius:2px;
+}
+
+.category-purple{
+    background:#704A89;
+    color:white;
+}
+
+.category-light{
+    background:#F8F2EB;
+    color:#514753;
+}
+
+.category-dark{
+    background:#594064;
+    color:white;
+}
+
+.category-one{
+    width:86%;
+    right:2%;
+    top:35px;
+    transform:rotate(-1deg);
+    z-index:5;
+}
+
+.category-two{
+    width:94%;
+    right:0;
+    top:113px;
+    transform:rotate(.5deg);
+    z-index:4;
+}
+
+.category-three{
+    width:88%;
+    right:2%;
+    top:185px;
+    transform:rotate(-.7deg);
+    z-index:5;
+}
+
+.category-four{
+    width:82%;
+    right:2%;
+    top:257px;
+    transform:rotate(1deg);
+    z-index:4;
+}
+
+.category-five{
+    width:77%;
+    right:3%;
+    top:330px;
+    transform:rotate(-.5deg);
+    z-index:5;
+}
+
+/* ================= SECCIONES GENERALES ================= */
+
+.section{
+    padding:85px 48px;
+}
+
+.section-inner{
+    width:100%;
+    max-width:1180px;
+    margin:auto;
+}
+
+.section-header{
+    max-width:700px;
+    margin:0 auto 45px;
+    text-align:center;
+}
+
+.section-label{
+    color:var(--dorado);
+    font-size:14px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.2px;
+}
+
+.section-header h2{
+    font-family:'Playfair Display',serif;
+    color:var(--morado-oscuro);
+    font-size:42px;
+    line-height:1.15;
+    margin:8px 0 13px;
+    overflow-wrap:break-word;
+}
+
+.section-header p{
+    color:#665e68;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/* ================= LIBROS DESTACADOS ================= */
+
+.books-section{
+    background:#FBF7F2;
+}
+
+.books-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:20px;
+}
+
+.book-card{
+    min-width:0;
+    background:white;
+    border:1px solid #e4dce6;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 7px 20px rgba(58,38,67,.06);
+    transition:.25s;
+}
+
+.book-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 13px 28px rgba(58,38,67,.11);
+}
+
+.book-cover{
+    height:300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    position:relative;
+    background:#eee;
+}
+
+.book-cover img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:contain;
+    transition:transform .35s ease;
+}
+
+.book-card:hover .book-cover img{
+    transform:scale(1.04);
+}
+
+.book-info{
+    padding:21px;
+}
+
+.book-category{
+    color:var(--dorado);
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+    margin-bottom:6px;
+}
+
+.book-info h3{
+    font-family:'Playfair Display',serif;
+    color:var(--morado-oscuro);
+    font-size:22px;
+    line-height:1.2;
+    margin-bottom:5px;
+    overflow-wrap:break-word;
+}
+
+.book-author{
+    color:var(--morado);
+    font-size:14px;
+    font-weight:600;
+    line-height:1.5;
+    margin-bottom:10px;
+}
+
+.book-info p{
+    color:#68616b;
+    font-size:14px;
+    line-height:1.55;
+    margin-bottom:17px;
+}
+
+.book-link {
+    display: inline-block;
+    padding: 10px 18px;
+    background: var(--morado);
+    color: var(--blanco);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.book-link:hover {
+    background: var(--morado-oscuro);
+    transform: translateY(-2px);
+}
+
+.book-link:hover{
+    text-decoration:underline;
+}
+
+.catalog-button-area{
+    text-align:center;
+    margin-top:35px;
+}
+
+.catalog-button{
+    display:inline-block;
+    max-width:100%;
+    background:var(--morado);
+    color:white;
+    text-decoration:none;
+    padding:15px 28px;
+    border-radius:5px;
+    font-weight:700;
+    line-height:1.5;
+    box-shadow:0 6px 15px rgba(101,66,127,.20);
+    transition:.25s;
+}
+
+.catalog-button:hover{
+    background:#523568;
+    transform:translateY(-2px);
+}
+
+/* ================= SERVICIOS ================= */
+
+.services-section{
+    background:#F0E9F3;
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:22px;
+}
+
+.service-card{
+    min-width:0;
+    background:#FFFDFB;
+    padding:30px;
+    border-radius:10px;
+    border:1px solid #e1d6e5;
+    box-shadow:0 6px 18px rgba(58,38,67,.05);
+    transition:.25s;
+}
+
+.service-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 25px rgba(58,38,67,.10);
+}
+
+.service-icon{
+    width:52px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:var(--lila);
+    color:var(--morado);
+    font-size:24px;
+    margin-bottom:17px;
+}
+
+.service-card h3{
+    font-family:'Playfair Display',serif;
+    color:var(--morado-oscuro);
+    font-size:24px;
+    line-height:1.25;
+    margin-bottom:9px;
+}
+
+.service-card p{
+    color:#665e68;
+    font-size:15px;
+    line-height:1.65;
+    margin-bottom:15px;
+}
+
+.service-card a{
+    color:var(--morado);
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+}
+
+/* ================= CÓMO FUNCIONA ================= */
+
+.steps-section{
+    background:#FFFDFB;
+}
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:22px;
+}
+
+.step{
+    text-align:center;
+    padding:25px;
+}
+
+.step-number{
+    width:48px;
+    height:48px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    background:var(--morado);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+.step h3{
+    font-family:'Playfair Display',serif;
+    color:var(--morado-oscuro);
+    font-size:22px;
+    margin-bottom:7px;
+}
+
+.step p{
+    color:#68616b;
+    font-size:14px;
+    line-height:1.65;
+}
+
+/* ================= CONTACTO ================= */
+
+.contact-section{
+    background:#E8E0EC;
+}
+
+.contact-layout{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:30px;
+    align-items:stretch;
+}
+
+.contact-main{
+    min-width:0;
+    background:var(--morado);
+    color:white;
+    padding:38px;
+    border-radius:10px;
+}
+
+.contact-main h2{
+    font-family:'Playfair Display',serif;
+    font-size:36px;
+    line-height:1.15;
+    margin-bottom:12px;
+}
+
+.contact-main p{
+    color:#eee7f1;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+.contact-button{
+    display:inline-block;
+    max-width:100%;
+    background:white;
+    color:var(--morado);
+    text-decoration:none;
+    padding:13px 21px;
+    border-radius:4px;
+    font-weight:700;
+    line-height:1.5;
+    transition:.2s;
+}
+
+.contact-button:hover{
+    background:#f5eff7;
+    transform:translateY(-2px);
+}
+
+.contact-details{
+    min-width:0;
+    background:#FFFDFB;
+    border-radius:10px;
+    padding:32px;
+    border:1px solid #ddd2e2;
+}
+
+.contact-details h3{
+    font-family:'Playfair Display',serif;
+    color:var(--morado-oscuro);
+    font-size:27px;
+    margin-bottom:20px;
+}
+
+.contact-item{
+    display:flex;
+    gap:14px;
+    margin-bottom:19px;
+    min-width:0;
+}
+
+.contact-icon{
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:var(--lila);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.contact-item strong{
+    display:block;
+    color:var(--morado-oscuro);
+    margin-bottom:2px;
+}
+
+.contact-item span{
+    display:block;
+    color:#68616b;
+    font-size:14px;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+}
+
+/* ================= CTA FINAL ================= */
+
+.final-cta{
+    padding:75px 48px;
+    background:linear-gradient(135deg,#5E3C78,#795697);
+    color:white;
+    text-align:center;
+}
+
+.final-cta h2{
+    font-family:'Playfair Display',serif;
+    font-size:42px;
+    line-height:1.2;
+    margin-bottom:12px;
+}
+
+.final-cta p{
+    max-width:650px;
+    margin:0 auto 25px;
+    color:#eee8f1;
+    line-height:1.7;
+}
+
+.final-button{
+    display:inline-block;
+    max-width:100%;
+    background:white;
+    color:var(--morado);
+    text-decoration:none;
+    padding:15px 28px;
+    border-radius:4px;
+    font-weight:700;
+    line-height:1.5;
+    transition:.25s;
+}
+
+.final-button:hover{
+    transform:translateY(-2px);
+    background:#f6f0f8;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#302338;
+    color:#DCD4E0;
+    padding:50px 48px 25px;
+}
+
+.footer-inner{
+    max-width:1180px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:13px;
+}
+
+.footer-logo img{
+    width:70px;
+    height:70px;
+    flex-shrink:0;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #806395;
+}
+
+.footer-logo h3{
+    font-family:'Playfair Display',serif;
+    color:white;
+    font-size:25px;
+}
+
+.footer-inner p{
+    color:#c9bfce;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.footer-column h4{
+    color:white;
+    margin-bottom:13px;
+    font-family:'Playfair Display',serif;
+    font-size:19px;
+}
+
+.footer-column a{
+    display:block;
+    color:#c9bfce;
+    text-decoration:none;
+    font-size:14px;
+    margin-bottom:8px;
+    overflow-wrap:anywhere;
+}
+
+.footer-column a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    max-width:1180px;
+    margin:35px auto 0;
+    padding-top:20px;
+    border-top:1px solid #4e4256;
+    text-align:center;
+    color:#afa5b5;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* ================= TABLET ================= */
+
+@media(max-width:1050px){
+    .nav{
+        padding:0 25px;
+        gap:16px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .logo img{
+        width:48px;
+        height:48px;
+    }
+
+    .nav-links{
+        gap:14px;
+    }
+
+    .nav-links a{
+        font-size:13px;
+    }
+
+    .nav-button{
+        padding:13px 15px;
+        font-size:13px;
+    }
+
+    .hero-inner{
+        padding-left:30px;
+        padding-right:30px;
+        grid-template-columns:minmax(0,1fr);
+        text-align:center;
+    }
+
+    .hero-text{
+        width:100%;
+        max-width:760px;
+        margin:auto;
+        padding-bottom:0;
+    }
+
+    .hero-title,
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .hero-actions{
+        justify-content:center;
+    }
+
+    .hero-books{
+        width:100%;
+        max-width:550px;
+        height:420px;
+        margin:10px auto 0;
+    }
+
+    .books-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .services-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .steps{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+    }
+
+    .footer-inner{
+        gap:30px;
+    }
+}
+
+/* ================= CELULAR ================= */
+
+@media(max-width:768px){
+    header{
+        min-height:76px;
+    }
+
+    .nav{
+        height:76px;
+        min-height:76px;
+        padding:0 16px;
+        gap:10px;
+    }
+
+    .logo{
+        font-size:clamp(18px,4.5vw,24px);
+        gap:9px;
+        min-width:0;
+        white-space:normal;
+    }
+
+    .logo img{
+        width:48px;
+        height:48px;
+    }
+
+    .logo span{
+        line-height:1.1;
+    }
+
+    .nav-links,
+    .nav-button{
+        display:none;
+    }
+
+    .menu-toggle{
+        display:flex;
+        width:52px;
+        height:52px;
+        margin-left:auto;
+    }
+
+    .mobile-menu{
+        top:100%;
+    }
+
+    .hero{
+        min-height:auto;
+    }
+
+    .hero::before{
+        width:300px;
+        height:300px;
+        right:-120px;
+        top:100px;
+    }
+
+    .hero::after{
+        width:180px;
+        height:180px;
+        right:-40px;
+    }
+
+    .hero-inner{
+        width:100%;
+        min-height:auto;
+        padding:44px 20px 20px;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+    }
+
+    .hero-text{
+        width:100%;
+        max-width:560px;
+        margin:0 auto;
+        padding:0;
+        text-align:center;
+    }
+
+    .hero-small{
+        font-size:14px;
+        margin-bottom:19px;
+        line-height:1.6;
+    }
+
+    .hero-title{
+        width:100%;
+        max-width:100%;
+        font-size:clamp(34px,8.2vw,52px);
+        line-height:1.08;
+        letter-spacing:-1.2px;
+        margin-bottom:22px;
+        overflow-wrap:normal;
+        word-break:normal;
+    }
+
+    .hero-description{
+        width:100%;
+        max-width:500px;
+        font-size:16px;
+        line-height:1.7;
+        margin:0 auto 25px;
+    }
+
+    .hero-actions{
+        width:100%;
+        max-width:380px;
+        margin:0 auto;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        gap:12px;
+    }
+
+    .explorar-btn,
+    .info-btn{
+        width:100%;
+        max-width:100%;
+        padding:15px 14px;
+        font-size:15px;
+        white-space:normal;
+    }
+
+    .hero-books{
+        width:100%;
+        max-width:480px;
+        height:auto;
+        min-height:0;
+        aspect-ratio:1.25 / 1;
+        margin:18px auto 0;
+        overflow:hidden;
+        transform:none;
+    }
+
+    .book-stack{
+        position:absolute;
+        inset:0;
+        width:100%;
+        max-width:100%;
+        height:100%;
+    }
+
+    .sparkle{
+        left:2%;
+        top:5%;
+        font-size:25px;
+    }
+
+    .leaf{
+        width:14%;
+        height:7%;
+    }
+
+    .leaf-one{
+        left:0;
+        top:53%;
+    }
+
+    .leaf-two{
+        left:13%;
+        top:56%;
+    }
+
+    .leaf-three{
+        right:0;
+        bottom:12%;
+    }
+
+    .category{
+        height:16%;
+        max-width:94%;
+        padding-left:30px;
+        padding-right:7px;
+        font-size:clamp(11px,3.2vw,16px);
+        line-height:1.2;
+    }
+
+    .category{
+    text-decoration:none;
+    cursor:pointer;
+    transition:filter .2s, box-shadow .2s;
+}
+
+.category:hover,.category:focus-visible{
+    filter:brightness(1.06);
+    box-shadow:0 9px 18px rgba(58,38,67,.18);
+    outline:2px solid #B58B54;
+    outline-offset:3px;
+}
+
+.category::before{
+        left:15px;
+        width:3px;
+        height:65%;
+    }
+
+    .category-one{
+        width:82%;
+        right:2%;
+        top:8%;
+    }
+
+    .category-two{
+        width:91%;
+        right:0;
+        top:25%;
+    }
+
+    .category-three{
+        width:85%;
+        right:2%;
+        top:42%;
+    }
+
+    .category-four{
+        width:80%;
+        right:2%;
+        top:59%;
+    }
+
+    .category-five{
+        width:75%;
+        right:3%;
+        top:76%;
+    }
+
+    .section{
+        padding:60px 20px;
+    }
+
+    .section-inner{
+        width:100%;
+        min-width:0;
+    }
+
+    .section-header{
+        margin-bottom:32px;
+    }
+
+    .section-label{
+        font-size:12px;
+        line-height:1.6;
+    }
+
+    .section-header h2{
+        font-size:clamp(29px,7vw,36px);
+        line-height:1.2;
+    }
+
+    .section-header p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    .books-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:14px;
+    }
+
+    .book-cover{
+        height:clamp(155px,45vw,250px);
+    }
+
+    .book-info{
+        padding:14px;
+    }
+
+    .book-info h3{
+        font-size:19px;
+    }
+
+    .book-author{
+        font-size:13px;
+    }
+
+    .book-info p{
+        font-size:13px;
+    }
+
+    .services-grid{
+        grid-template-columns:minmax(0,1fr);
+        gap:16px;
+    }
+
+    .service-card{
+        padding:25px;
+    }
+
+    .steps{
+        grid-template-columns:minmax(0,1fr);
+        gap:10px;
+    }
+
+    .step{
+        padding:20px 10px;
+    }
+
+    .contact-layout{
+        grid-template-columns:minmax(0,1fr);
+        gap:18px;
+    }
+
+    .contact-main{
+        padding:28px 24px;
+    }
+
+    .contact-main h2{
+        font-size:32px;
+    }
+
+    .contact-details{
+        padding:25px 20px;
+    }
+
+    .contact-details h3{
+        font-size:25px;
+    }
+
+    .final-cta{
+        padding:58px 20px;
+    }
+
+    .final-cta h2{
+        font-size:clamp(30px,7.5vw,38px);
+    }
+
+    .final-cta p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+    footer{
+        padding:40px 20px 20px;
+    }
+
+    .footer-inner{
+        grid-template-columns:minmax(0,1fr);
+        gap:30px;
+    }
+
+    .footer-logo img{
+        width:60px;
+        height:60px;
+    }
+
+    .footer-logo h3{
+        font-size:23px;
+    }
+}
+
+/* ================= CELULARES PEQUEÑOS ================= */
+
+@media(max-width:380px){
+    .nav{
+        padding:0 12px;
+    }
+
+    .logo{
+        font-size:18px;
+        gap:7px;
+    }
+
+    .logo img{
+        width:43px;
+        height:43px;
+    }
+
+    .menu-toggle{
+        width:46px;
+        height:46px;
+        font-size:27px;
+    }
+
+    .hero-inner{
+        padding:35px 16px 15px;
+    }
+
+    .hero-title{
+        font-size:clamp(31px,8.5vw,36px);
+        letter-spacing:-.7px;
+    }
+
+    .hero-description{
+        font-size:15px;
+    }
+
+    .hero-books{
+        width:100%;
+        aspect-ratio:1.15 / 1;
+    }
+
+    .category{
+        padding-left:25px;
+        font-size:11px;
+    }
+
+    .category{
+    text-decoration:none;
+    cursor:pointer;
+    transition:filter .2s, box-shadow .2s;
+}
+
+.category:hover,.category:focus-visible{
+    filter:brightness(1.06);
+    box-shadow:0 9px 18px rgba(58,38,67,.18);
+    outline:2px solid #B58B54;
+    outline-offset:3px;
+}
+
+.category::before{
+        left:12px;
+    }
+
+    .section{
+        padding:48px 16px;
+    }
+
+    .books-grid{
+        gap:10px;
+    }
+
+    .book-info{
+        padding:11px;
+    }
+
+    .book-info h3{
+        font-size:17px;
+    }
+
+    .book-cover{
+        height:165px;
+    }
+
+    .contact-main,
+    .contact-details{
+        padding:22px 17px;
+    }
+}
+
+/* Evita que elementos anchos creen desplazamiento lateral */
+.hero-inner,
+.hero-text,
+.section-inner,
+.contact-layout,
+.footer-inner,
+.books-grid,
+.services-grid,
+.steps{
+    min-width:0;
+}
+
+
+/* ================= VENTANA DE INFORMACIÓN DE LIBROS ================= */
+
+.book-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    padding: 20px;
+    background: rgba(48, 35, 56, 0.75);
+    align-items: center;
+    justify-content: center;
+}
+
+.book-modal.open {
+    display: flex;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+.book-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.book-modal-close {
+    position: sticky;
+    float: right;
+    top: 10px;
+    margin: 10px 10px -48px 0;
+    z-index: 5;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: var(--lila);
+    color: var(--morado-oscuro);
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.book-modal-body {
+    display: grid;
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+    gap: 28px;
+    padding: 30px;
+}
+
+.book-modal-cover {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: var(--crema);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.book-modal-cover img {
+    display: block;
+    width: 100%;
+    max-height: 360px;
+    object-fit: contain;
+}
+
+.book-modal-details {
+    min-width: 0;
+    padding-top: 10px;
+}
+
+.book-modal-label {
+    color: var(--dorado);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.book-modal-details h2 {
+    margin: 12px 0;
+    color: var(--morado-oscuro);
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.book-modal-author {
+    margin-bottom: 18px;
+    color: var(--morado);
+    font-weight: 700;
+}
+
+.book-modal-details p {
+    margin-bottom: 14px;
+    color: #665e68;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.book-modal-details h3 {
+    margin: 20px 0 8px;
+    color: var(--morado-oscuro);
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+}
+
+.book-modal-info {
+    padding: 15px;
+    margin: 18px 0;
+    background: var(--lila-fondo);
+    border: 1px solid #e4dce6;
+    border-radius: 8px;
+}
+
+.book-modal-info p {
+    margin-bottom: 8px;
+}
+
+.book-modal-info p:last-child {
+    margin-bottom: 0;
+}
+
+.book-modal-info strong {
+    color: var(--morado-oscuro);
+}
+
+@media (max-width: 600px) {
+    .book-modal {
+        padding: 10px;
+    }
+
+    .book-modal-content {
+        max-height: 95vh;
+    }
+
+    .book-modal-body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .book-modal-cover img {
+        width: auto;
+        max-width: 100%;
+        max-height: 250px;
+    }
+
+    .book-modal-details h2 {
+        font-size: 27px;
+    }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVEGACIÓN -->
+
+<header>
+<nav class="nav">
+
+<a href="index.html" class="logo">
+<img src="img/logo.jpeg" alt="Logo Biblioteca Aurora">
+<span>Biblioteca Aurora</span>
+</a>
+
+<div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="catalogo.html">Catálogo</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="como-funciona.html">Cómo funciona</a>
+    <a href="horarios.html">Horarios</a>
+</div>
+
+<a href="catalogo.html#busqueda" class="nav-button">Buscar un libro</a>
+
+<button class="menu-toggle" id="menuToggle" type="button"
+aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
+☰
+</button>
+
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html">Inicio</a>
+<a href="como-funciona.html">Cómo funciona</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="servicios.html">Servicios</a>
+<a href="horarios.html">Horarios</a>
+<a href="catalogo.html#busqueda" class="mobile-button">Buscar un libro</a>
+</div>
+</header>
+
+<!-- PORTADA -->
+
+<section class="hero">
+<div class="hero-inner">
+
+<div class="hero-text">
+
+<span class="hero-small">
+Tu biblioteca de siempre, ahora más simple
+</span>
+
+<h1 class="hero-title">
+Un lugar para <em>encontrar</em>, pedir y disfrutar tus próximos libros
+</h1>
+
+<p class="hero-description">
+Aurora reúne el catálogo de la biblioteca en un solo lugar,
+para que encontrar tu próxima lectura sea más sencillo.
+Descubre libros, conoce nuestros servicios y encuentra
+la información que necesitas.
+</p>
+
+
+<div class="hero-actions">
+    <a href="servicios.html" class="info-btn">Conocer nuestros servicios</a>
+</div>
+
+
+</div>
+
+<div class="hero-books" aria-label="Categorías de lectura">
+
+<div class="book-stack">
+
+<div class="sparkle">✦</div>
+<div class="leaf leaf-one"></div>
+<div class="leaf leaf-two"></div>
+<div class="leaf leaf-three"></div>
+
+
+<a class="category category-purple category-one" href="catalogo.html?categoria=Literatura#categorias" aria-label="Ver libros de Literatura">Literatura</a>
+<a class="category category-light category-two" href="catalogo.html?categoria=Ciencia#categorias" aria-label="Ver libros de lectura y conocimiento">Lectura y conocimiento</a>
+<a class="category category-purple category-three" href="catalogo.html?categoria=Historia#categorias" aria-label="Ver libros de Historia y cultura">Historia y cultura</a>
+<a class="category category-dark category-four" href="catalogo.html?categoria=Desarrollo%20personal#categorias" aria-label="Ver libros de Ciencia y naturaleza">Ciencia y naturaleza</a>
+<a class="category category-purple category-five" href="catalogo.html?categoria=Fantas%C3%ADa%20y%20misterio#categorias" aria-label="Ver libros de Fantasía y misterio">Fantasía y misterio</a>
+
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- LIBROS DESTACADOS -->
+
+<section class="section books-section">
+<div class="section-inner">
+
+<div class="section-header">
+<span class="section-label">Descubre nuevas lecturas</span>
+<h2>Libros para cada tipo de lector</h2>
+<p>
+Explora algunos de los títulos que puedes encontrar
+en nuestro catálogo y descubre información sobre
+diferentes géneros y temas.
+</p>
+</div>
+
+<div class="books-grid">
+
+<article class="book-card">
+<div class="book-cover">
+<img src="https://covers.openlibrary.org/b/isbn/9780307474728-L.jpg"
+alt="Portada de Cien años de soledad" loading="lazy">
+</div>
+<div class="book-info">
+<div class="book-category">Literatura</div>
+<h3>Cien Años de Soledad</h3>
+<div class="book-author">Gabriel García Márquez</div>
+<p>Una historia familiar llena de personajes, generaciones y acontecimientos en el pueblo de Macondo.</p>
+<button type="button" class="book-link" data-book="cien-anos">
+    Más información →
+</button>
+</div>
+</article>
+
+<article class="book-card">
+<div class="book-cover">
+<img src="https://covers.openlibrary.org/b/isbn/9780345539434-L.jpg"
+alt="Portada de Cosmos" loading="lazy">
+</div>
+<div class="book-info">
+<div class="book-category">Ciencia</div>
+<h3>Cosmos</h3>
+<div class="book-author">Carl Sagan</div>
+<p>Un recorrido por el universo y por algunas de las preguntas más fascinantes de la ciencia.</p>
+<button type="button" class="book-link" data-book="cosmos">
+    Más información →
+</button>
+</div>
+</article>
+
+<article class="book-card">
+<div class="book-cover">
+<img src="https://covers.openlibrary.org/b/isbn/9780156012195-L.jpg"
+alt="Portada de El Principito" loading="lazy">
+</div>
+<div class="book-info">
+<div class="book-category">Literatura</div>
+<h3>El Principito</h3>
+<div class="book-author">Antoine de Saint-Exupéry</div>
+<p>Una historia sobre la amistad, el amor, la infancia y las cosas importantes de la vida.</p>
+<button type="button" class="book-link" data-book="principito">
+    Más información →
+</button>
+</div>
+</article>
+
+<article class="book-card">
+<div class="book-cover">
+<img src="https://covers.openlibrary.org/b/isbn/9780486411095-L.jpg"
+alt="Portada de Drácula" loading="lazy">
+</div>
+<div class="book-info">
+<div class="book-category">Fantasía y misterio</div>
+<h3>Drácula</h3>
+<div class="book-author">Bram Stoker</div>
+<p>Un clásico del terror gótico que presenta la historia del misterioso Conde Drácula.</p>
+<button type="button" class="book-link" data-book="dracula">
+    Más información →
+</button>
+</div>
+</article>
+
+</div>
+
+<div class="catalog-button-area">
+<a href="catalogo.html#busqueda" class="catalog-button">Explorar todo el catálogo</a>
+</div>
+
+</div>
+</section>
+
+
+<!-- VENTANA EMERGENTE DE INFORMACIÓN DEL LIBRO -->
+
+<div id="bookModal" class="book-modal" aria-hidden="true">
+
+    <div class="book-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="bookModalTitle">
+
+        <button type="button"
+                id="bookModalClose"
+                class="book-modal-close"
+                aria-label="Cerrar ventana">
+            &times;
+        </button>
+
+        <div class="book-modal-body">
+
+            <div class="book-modal-cover">
+                <img id="bookModalImage" src="" alt="">
+            </div>
+
+            <div class="book-modal-details">
+
+                <span class="book-modal-label">
+                    Biblioteca Aurora · Información del libro
+                </span>
+
+                <h2 id="bookModalTitle"></h2>
+
+                <div id="bookModalAuthor" class="book-modal-author"></div>
+
+                <p id="bookModalDescription"></p>
+
+                <div class="book-modal-info">
+                    <p><strong>Categoría:</strong> <span id="bookModalCategory"></span></p>
+                    <p><strong>Temas:</strong> <span id="bookModalThemes"></span></p>
+                    <p><strong>Autor:</strong> <span id="bookModalAuthorInfo"></span></p>
+                </div>
+
+                <h3>¿Qué encontrarás en este libro?</h3>
+
+                <p id="bookModalExtra"></p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- SERVICIOS -->
+
+<section class="section services-section">
+<div class="section-inner">
+
+<div class="section-header">
+<span class="section-label">Nuestros servicios</span>
+<h2>Más que préstamos de libros</h2>
+<p>
+Conoce los servicios que Biblioteca Aurora ofrece
+para acompañarte durante tus lecturas y estudios.
+</p>
+</div>
+
+<div class="services-grid">
+
+<article class="service-card">
+<div class="service-icon">📚</div>
+<h3>Consulta de libros</h3>
+<p>Encuentra libros por título, autor o categoría y conoce información básica antes de realizar tu consulta.</p>
+<a href="catalogo.html">Explorar catálogo →</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">🔎</div>
+<h3>Orientación de lectura</h3>
+<p>Si no sabes qué libro elegir, puedes conocer diferentes categorías y encontrar materiales según tus intereses.</p>
+<a href="como-funciona.html">Cómo funciona →</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">🪑</div>
+<h3>Sala de lectura</h3>
+<p>Un espacio pensado para leer, estudiar y dedicar tiempo a tus actividades académicas y personales.</p>
+<a href="servicios.html">Conocer servicios →</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">💡</div>
+<h3>Apoyo al aprendizaje</h3>
+<p>Utiliza los recursos disponibles para investigar, aprender y complementar tus actividades.</p>
+<a href="servicios.html">Ver información →</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">🏷️</div>
+<h3>Búsqueda por categorías</h3>
+<p>Explora literatura, historia, ciencia, fantasía y otros temas para encontrar nuevas lecturas.</p>
+<a href="catalogo.html#busqueda">Buscar libros →</a>
+</article>
+
+<article class="service-card">
+<div class="service-icon">🕐</div>
+<h3>Información y horarios</h3>
+<p>Consulta los horarios disponibles y organiza tu visita a Biblioteca Aurora.</p>
+<a href="horarios.html">Ver horarios →</a>
+</article>
+
+</div>
+</div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+
+<section class="section steps-section">
+<div class="section-inner">
+
+<div class="section-header">
+<span class="section-label">Fácil de usar</span>
+<h2>Encuentra tu próxima lectura en tres pasos</h2>
+<p>El catálogo está pensado para que puedas encontrar la información que necesitas rápidamente.</p>
+</div>
+
+<div class="steps">
+
+<div class="step">
+<div class="step-number">1</div>
+<h3>Busca</h3>
+<p>Escribe el título, autor o tema que quieres encontrar en el catálogo.</p>
+</div>
+
+<div class="step">
+<div class="step-number">2</div>
+<h3>Filtra</h3>
+<p>Utiliza las categorías para encontrar libros de acuerdo con tus intereses.</p>
+</div>
+
+<div class="step">
+<div class="step-number">3</div>
+<h3>Descubre</h3>
+<p>Revisa la información de los libros y encuentra tu próxima lectura.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CONTACTO -->
+
+<section class="section contact-section" id="informacion">
+<div class="section-inner">
+
+<div class="section-header">
+<span class="section-label">Estamos para ayudarte</span>
+<h2>¿Necesitas información?</h2>
+<p>
+Encuentra nuestros datos principales y consulta la información
+que necesites antes de visitar la biblioteca.
+</p>
+</div>
+
+<div class="contact-layout">
+
+<div class="contact-main">
+<h2>Hablemos sobre tu próxima lectura</h2>
+<p>
+Si necesitas orientación, información sobre los servicios o ayuda
+para encontrar un libro, puedes consultar nuestras diferentes secciones.
+</p>
+<a href="servicios.html" class="contact-button">Conocer nuestros servicios</a>
+</div>
+
+<div class="contact-details">
+<h3>Información de contacto</h3>
+
+<div class="contact-item">
+<div class="contact-icon">📚</div>
+<div>
+<strong>Biblioteca Aurora</strong>
+<span>Espacio dedicado a la lectura, consulta y aprendizaje.</span>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">📍</div>
+<div>
+<strong>Ubicación</strong>
+<span>Instituto Nacional General Francisco Menéndez</span>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">📧</div>
+<div>
+<strong>Correo electrónico</strong>
+<span>biblioteca.aurora@correo.com</span>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">📞</div>
+<div>
+<strong>Teléfono</strong>
+<span>6058-4356</span>
+</div>
+</div>
+
+<div class="contact-item">
+<div class="contact-icon">🕐</div>
+<div>
+<strong>Horarios</strong>
+<span>Consulta los horarios antes de realizar tu visita.</span>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA FINAL -->
+
+<section class="final-cta">
+<h2>Tu próximo libro te está esperando</h2>
+<p>
+Explora el catálogo, utiliza la búsqueda y descubre una nueva historia,
+un nuevo tema o algo interesante para aprender.
+</p>
+<a href="catalogo.html#busqueda" class="final-button">Explorar el catálogo</a>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+<div class="footer-inner">
+
+<div>
+<div class="footer-logo">
+<img src="img/logo.jpeg" alt="Logo Biblioteca Aurora" loading="lazy">
+<h3>Biblioteca Aurora</h3>
+</div>
+<p>
+Un espacio pensado para hacer más sencillo el acceso a la lectura,
+el aprendizaje y la búsqueda de información.
+</p>
+</div>
+
+<div class="footer-column">
+<h4>Navegación</h4>
+<a href="index.html">Inicio</a>
+<a href="como-funciona.html">Cómo funciona</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="servicios.html">Servicios</a>
+<a href="horarios.html">Horarios</a>
+</div>
+
+<div class="footer-column">
+<h4>Contacto</h4>
+<a href="mailto:biblioteca.aurora@correo.com">biblioteca.aurora@correo.com</a>
+<a href="tel:60584356">6058-4356</a>
+<a href="horarios.html">Consultar horarios</a>
+<a href="catalogo.html#busqueda">Buscar un libro</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 Biblioteca Aurora. Todos los derechos reservados.
+</div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click", function(){
+    const abierto = mobileMenu.classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", String(abierto));
+    menuToggle.setAttribute(
+        "aria-label",
+        abierto ? "Cerrar menú" : "Abrir menú"
+    );
+
+    menuToggle.textContent = abierto ? "✕" : "☰";
+});
+
+mobileMenu.querySelectorAll("a").forEach(function(link){
+    link.addEventListener("click", function(){
+        mobileMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Abrir menú");
+        menuToggle.textContent = "☰";
+    });
+});
+
+window.addEventListener("resize", function(){
+    if(window.innerWidth > 768){
+        mobileMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Abrir menú");
+        menuToggle.textContent = "☰";
+    }
+});
+
+
+/* ================= INFORMACIÓN DE LOS LIBROS DESTACADOS ================= */
+
+const librosAurora = {
+    "cien-anos": {
+        titulo: "Cien años de soledad",
+        autor: "Gabriel García Márquez",
+        categoria: "Literatura",
+        temas: "Familia, memoria, amor y realismo mágico",
+        imagen: "https://covers.openlibrary.org/b/isbn/9780307474728-L.jpg",
+        descripcion: "La novela narra la historia de la familia Buendía a través de varias generaciones en Macondo, un pueblo imaginario donde los acontecimientos extraordinarios forman parte de la vida cotidiana.",
+        autorInfo: "Gabriel García Márquez fue un escritor y periodista colombiano, reconocido por su influencia en la literatura en español.",
+        extra: "La obra explora la soledad, el paso del tiempo, los conflictos familiares y la memoria. Es una de las novelas más representativas del realismo mágico."
+    },
+
+    "cosmos": {
+        titulo: "Cosmos",
+        autor: "Carl Sagan",
+        categoria: "Ciencia",
+        temas: "Astronomía, universo y exploración espacial",
+        imagen: "https://covers.openlibrary.org/b/isbn/9780345539434-L.jpg",
+        descripcion: "Carl Sagan ofrece un recorrido por el universo y explica conceptos científicos relacionados con las estrellas, los planetas y el origen de nuestro conocimiento sobre el cosmos.",
+        autorInfo: "Carl Sagan fue un astrónomo y divulgador científico estadounidense.",
+        extra: "El libro invita a comprender nuestro lugar en el universo y a valorar la investigación científica, la observación y la curiosidad."
+    },
+
+    "principito": {
+        titulo: "El Principito",
+        autor: "Antoine de Saint-Exupéry",
+        categoria: "Literatura",
+        temas: "Amistad, amor, infancia e imaginación",
+        imagen: "https://covers.openlibrary.org/b/isbn/9780156012195-L.jpg",
+        descripcion: "Un pequeño príncipe viaja por distintos planetas y conoce personajes que lo llevan a reflexionar sobre la amistad, los sentimientos y las relaciones humanas.",
+        autorInfo: "Antoine de Saint-Exupéry fue un escritor y aviador francés.",
+        extra: "Mediante una narración sencilla y simbólica, la obra invita a reflexionar sobre el afecto, la responsabilidad y las cosas que realmente importan."
+    },
+
+    "dracula": {
+        titulo: "Drácula",
+        autor: "Bram Stoker",
+        categoria: "Fantasía y misterio",
+        temas: "Terror gótico, suspenso y misterio",
+        imagen: "https://covers.openlibrary.org/b/isbn/9780486411095-L.jpg",
+        descripcion: "La novela presenta al conde Drácula y los inquietantes acontecimientos que ocurren cuando varios personajes descubren los secretos que rodean su figura.",
+        autorInfo: "Bram Stoker fue un escritor irlandés, conocido principalmente por su novela Drácula.",
+        extra: "La historia utiliza cartas, diarios y testimonios para construir una atmósfera de suspenso y terror. Es una obra clásica de la literatura gótica."
+    }
+};
+
+const ventanaLibro = document.getElementById("bookModal");
+const cerrarLibro = document.getElementById("bookModalClose");
+let botonLibroAnterior = null;
+
+function abrirFichaLibro(clave, boton) {
+    const libro = librosAurora[clave];
+
+    if (!libro || !ventanaLibro) {
+        console.error("No se encontró el libro solicitado:", clave);
+        return;
+    }
+
+    botonLibroAnterior = boton;
+
+    document.getElementById("bookModalTitle").textContent = libro.titulo;
+    document.getElementById("bookModalAuthor").textContent = libro.autor;
+    document.getElementById("bookModalDescription").textContent = libro.descripcion;
+    document.getElementById("bookModalCategory").textContent = libro.categoria;
+    document.getElementById("bookModalThemes").textContent = libro.temas;
+    document.getElementById("bookModalAuthorInfo").textContent = libro.autorInfo;
+    document.getElementById("bookModalExtra").textContent = libro.extra;
+
+    const imagenLibro = document.getElementById("bookModalImage");
+    imagenLibro.src = libro.imagen;
+    imagenLibro.alt = "Portada de " + libro.titulo;
+
+    ventanaLibro.classList.add("open");
+    ventanaLibro.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    document.getElementById("bookModalClose").focus();
+}
+
+function cerrarFichaLibro() {
+    if (!ventanaLibro) return;
+
+    ventanaLibro.classList.remove("open");
+    ventanaLibro.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+
+    if (botonLibroAnterior) {
+        botonLibroAnterior.focus();
+    }
+}
+
+document.querySelectorAll(".book-link[data-book]").forEach(function(boton) {
+    boton.addEventListener("click", function() {
+        abrirFichaLibro(boton.dataset.book, boton);
+    });
+});
+
+cerrarLibro.addEventListener("click", cerrarFichaLibro);
+
+ventanaLibro.addEventListener("click", function(evento) {
+    if (evento.target === ventanaLibro) {
+        cerrarFichaLibro();
+    }
+});
+
+document.addEventListener("keydown", function(evento) {
+    if (evento.key === "Escape" && ventanaLibro.classList.contains("open")) {
+        cerrarFichaLibro();
+    }
+});
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cómo funciona - Biblioteca Aurora</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root{
+  --morado:#5B3E75;
+  --morado-suave:#7A5A97;
+  --verde:#3E6337;
+  --lavanda:#EFE9F3;
+  --crema:#FAF6F0;
+  --gris:#2B2530;
+  --blanco:#FFFDFB;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'Source Sans 3',sans-serif;
+  background:var(--crema);
+  color:var(--gris);
+  line-height:1.6;
+}
+
+header{
+  background:rgba(255,253,251,.97);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid #e9e0ec;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:var(--morado);
+  font-family:'Fraunces',serif;
+  font-size:23px;
+  font-weight:600;
+  margin-right:auto;
+}
+
+.brand img{
+  width:43px;
+  height:43px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:var(--gris);
+  font-weight:600;
+}
+
+.nav-links a:hover{
+  color:var(--morado);
+}
+
+.nav-cta{
+  background:var(--morado);
+  color:white;
+  text-decoration:none;
+  padding:11px 18px;
+  border-radius:25px;
+  font-weight:700;
+}
+
+.menu-toggle{
+  display:none;
+  border:none;
+  background:var(--lavanda);
+  color:var(--morado);
+  font-size:27px;
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.mobile-menu{
+  display:none;
+  padding:0 24px 18px;
+}
+
+.mobile-menu a{
+  color:var(--gris);
+  text-decoration:none;
+  font-weight:600;
+  padding:12px 5px;
+  border-bottom:1px solid #eee7f0;
+}
+
+.mobile-menu .mobile-cta{
+  margin-top:10px;
+  text-align:center;
+  color:white;
+  background:var(--morado);
+  border-radius:12px;
+  border:none;
+}
+
+/* HERO */
+
+.hero{
+  padding:80px 24px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(92,133,82,.16),transparent 25%),
+    radial-gradient(circle at 85% 15%,rgba(122,90,151,.18),transparent 28%),
+    #f7f1eb;
+}
+
+.hero span{
+  color:var(--verde);
+  font-weight:700;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  font-family:'Fraunces',serif;
+  color:var(--morado);
+  font-size:clamp(42px,6vw,62px);
+  margin:8px 0 12px;
+}
+
+.hero p{
+  max-width:700px;
+  margin:auto;
+  color:#625b65;
+  font-size:18px;
+}
+
+/* PASOS */
+
+.steps-section{
+  max-width:1100px;
+  margin:auto;
+  padding:75px 24px;
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px;
+}
+
+.step{
+  background:white;
+  border:1px solid #e7ded1;
+  border-radius:20px;
+  padding:25px 18px;
+  text-align:center;
+  box-shadow:0 8px 22px rgba(65,45,75,.05);
+}
+
+.number{
+  width:50px;
+  height:50px;
+  background:var(--morado);
+  color:white;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto 15px;
+  font-weight:700;
+  font-size:20px;
+}
+
+.step h3{
+  font-family:'Fraunces',serif;
+  color:var(--morado);
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.step p{
+  color:#665e68;
+  font-size:14px;
+}
+
+/* CONSEJOS */
+
+.tips{
+  background:white;
+  padding:75px 24px;
+}
+
+.tips-inner{
+  max-width:1100px;
+  margin:auto;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.title h2{
+  font-family:'Fraunces',serif;
+  color:var(--morado);
+  font-size:40px;
+}
+
+.title p{
+  color:#665e68;
+}
+
+.tip-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.tip{
+  background:var(--lavanda);
+  padding:27px;
+  border-radius:20px;
+}
+
+.tip h3{
+  color:var(--morado);
+  font-family:'Fraunces',serif;
+  font-size:24px;
+  margin-bottom:7px;
+}
+
+.tip p{
+  color:#625b65;
+}
+
+/* CTA */
+
+.cta{
+  max-width:1100px;
+  margin:65px auto;
+  padding:45px;
+  border-radius:25px;
+  background:linear-gradient(135deg,var(--morado),#80609a);
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+}
+
+.cta h2{
+  font-family:'Fraunces',serif;
+  font-size:34px;
+}
+
+.cta p{
+  color:#eee7f2;
+}
+
+.cta a{
+  background:white;
+  color:var(--morado);
+  text-decoration:none;
+  padding:12px 20px;
+  border-radius:25px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+/* FOOTER */
+
+footer{
+  background:#30263a;
+  color:#ddd5e2;
+  padding:40px 24px 22px;
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:35px;
+}
+
+footer h3,
+footer h4{
+  color:white;
+}
+
+footer h3{
+  font-family:'Fraunces',serif;
+  font-size:24px;
+}
+
+footer a{
+  color:#ddd5e2;
+  text-decoration:none;
+  display:block;
+  margin:5px 0;
+}
+
+.copyright{
+  max-width:1200px;
+  margin:25px auto 0;
+  padding-top:18px;
+  border-top:1px solid #50465a;
+  text-align:center;
+  font-size:14px;
+}
+
+@media(max-width:950px){
+
+  .nav-links,
+  .nav-cta{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .mobile-menu.open{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .steps{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .cta{
+    margin-left:24px;
+    margin-right:24px;
+  }
+}
+
+@media(max-width:600px){
+
+  .nav{
+    padding:10px 16px;
+  }
+
+  .brand{
+    font-size:19px;
+  }
+
+  .brand img{
+    width:38px;
+    height:38px;
+  }
+
+  .hero{
+    padding:60px 18px;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .steps-section{
+    padding:55px 18px;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .tip-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cta{
+    flex-direction:column;
+    text-align:center;
+    padding:35px 22px;
+    margin:45px 18px;
+  }
+
+  .footer-inner{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<nav class="nav">
+
+<a href="index.html" class="brand">
+<img src="img/logo.jpeg" alt="Logo Biblioteca Aurora">
+Biblioteca Aurora
+</a>
+
+<div class="nav-links">
+  <a href="index.html">Inicio</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="como-funciona.html">Cómo funciona</a>
+  <a href="horarios.html">Horarios</a>
+</div>
+
+<a href="catalogo.html#busqueda" class="nav-cta">
+Buscar un libro
+</a>
+
+<button class="menu-toggle" id="menuToggle"
+aria-label="Abrir menú"
+aria-expanded="false"
+aria-controls="mobileMenu">☰</button>
+
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+<a href="index.html">Inicio</a>
+<a href="catalogo.html">Catálogo</a>
+<a href="servicios.html">Servicios</a>
+<a href="como-funciona.html">Cómo funciona</a>
+<a href="horarios.html">Horarios</a>
+<a href="catalogo.html#busqueda" class="mobile-cta">Buscar un libro</a>
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<span> Guía rápida</span>
+
+<h1>¿Cómo funciona?</h1>
+
+<p>
+Conoce los pasos para encontrar un libro, consultar el catálogo
+y aprovechar los servicios de Biblioteca Aurora.
+</p>
+
+</section>
+
+
+<section class="steps-section">
+
+<div class="steps">
+
+<div class="step">
+<div class="number">1</div>
+<h3>Explora</h3>
+<p>
+Entra al catálogo y revisa las diferentes categorías.
+</p>
+</div>
+
+<div class="step">
+<div class="number">2</div>
+<h3>Busca</h3>
+<p>
+Escribe el título, autor o tema que estás buscando.
+</p>
+</div>
+
+<div class="step">
+<div class="number">3</div>
+<h3>Revisa</h3>
+<p>
+Selecciona un libro para conocer más información sobre él.
+</p>
+</div>
+
+<div class="step">
+<div class="number">4</div>
+<h3>Consulta</h3>
+<p>
+Acércate a la biblioteca para consultar el material disponible.
+</p>
+</div>
+
+<div class="step">
+<div class="number">5</div>
+<h3>Disfruta</h3>
+<p>
+Lee, estudia y aprovecha los recursos de la biblioteca.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="tips">
+
+<div class="tips-inner">
+
+<div class="title">
+
+<h2>Consejos para aprovechar el catálogo</h2>
+
+<p>
+Pequeñas recomendaciones para encontrar información
+de forma más sencilla.
+</p>
+
+</div>
+
+
+<div class="tip-grid">
+
+<div class="tip">
+
+<h3>🔎 Utiliza palabras clave</h3>
+
+<p>
+Si no recuerdas el título exacto, prueba buscando una palabra
+del título, el nombre del autor o un término relacionado.
+</p>
+
+</div>
+
+
+<div class="tip">
+
+<h3>🏷️ Explora las categorías</h3>
+
+<p>
+Si todavía no sabes qué leer, revisa las categorías para descubrir
+diferentes tipos de libros.
+</p>
+
+</div>
+
+
+<div class="tip">
+
+<h3>📚 Lee la descripción</h3>
+
+<p>
+Antes de elegir, revisa la información del libro para conocer
+de qué trata.
+</p>
+
+</div>
+
+
+<div class="tip">
+
+<h3>💡 Pide orientación</h3>
+
+<p>
+Si necesitas encontrar información específica, puedes utilizar
+los servicios de orientación de la biblioteca.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="cta">
+
+<div>
+<h2>Comienza a explorar</h2>
+<p>
+Tu próxima lectura puede estar a unos cuantos clics.
+</p>
+</div>
+
+<a href="servicios.html">
+    Explorar servicios →
+</a>
+
+</div>
+
+
+<footer>
+
+<div class="footer-inner">
+
+<div>
+<h3>Biblioteca Aurora</h3>
+<p>
+Un espacio para descubrir historias, aprender
+y disfrutar de la lectura.
+</p>
+</div>
+
+<div>
+<h4>Explora</h4>
+
+<a href="index.html">
+Inicio
+</a>
+
+
+<a href="como-funciona.html">
+Cómo funciona
+</a>
+
+
+<a href="catalogo.html">
+Catálogo
+</a>
+
+
+<a href="servicios.html">
+Servicios
+</a>
+
+
+<a href="horarios.html">
+Horarios
+</a>
+
+</div>
+
+<div>
+<h4>Contacto</h4>
+
+<a href="mailto:biblioteca.aurora@correo.com">
+biblioteca.aurora@correo.com
+</a>
+
+
+<a href="tel:60584356">
+6058-4356
+</a>
+
+
+<a href="horarios.html">
+Consultar horarios
+</a>
+
+
+<a href="catalogo.html#busqueda">
+Buscar un libro
+</a>
+</div>
+
+
+</div>
+
+<div class="copyright">
+© 2026 Biblioteca Aurora · Todos los derechos reservados.
+</div>
+
+</footer>
+
+
+<script>
+
+const menuToggle=document.getElementById("menuToggle");
+const mobileMenu=document.getElementById("mobileMenu");
+
+menuToggle.addEventListener("click",function(){
+
+const abierto=mobileMenu.classList.toggle("open");
+
+menuToggle.setAttribute("aria-expanded",abierto);
+menuToggle.textContent=abierto ? "✕" : "☰";
+
+});
+
+document.querySelectorAll(".mobile-menu a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+mobileMenu.classList.remove("open");
+menuToggle.setAttribute("aria-expanded","false");
+menuToggle.textContent="☰";
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
